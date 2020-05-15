@@ -1,6 +1,6 @@
 package apofig.fractals;
 
-import p79068.bmpio.Rgb888Image;
+import io.nayuki.bmpio.Rgb888Image;
 
 /**
  * User: oleksandr.baglai
@@ -21,17 +21,14 @@ public class Progress implements Rgb888Image {
         this.next = square/100;
     }
 
-    @Override
     public int getWidth() {
         return image.getWidth();
     }
 
-    @Override
     public int getHeight() {
         return image.getHeight();
     }
 
-    @Override
     public int getRgb888Pixel(int x, int y) {
         calculateProgress();
 

@@ -1,8 +1,8 @@
 package apofig.fractals;
 
-import p79068.bmpio.BmpImage;
-import p79068.bmpio.BmpWriter;
-import p79068.bmpio.Rgb888Image;
+import io.nayuki.bmpio.BmpImage;
+import io.nayuki.bmpio.BmpWriter;
+import io.nayuki.bmpio.Rgb888Image;
 
 import java.io.File;
 import java.io.FileOutputStream;

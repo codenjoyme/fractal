@@ -1,6 +1,6 @@
 package apofig.fractals;
 
-import p79068.bmpio.Rgb888Image;
+import io.nayuki.bmpio.Rgb888Image;
 
 /**
  * User: oleksandr.baglai

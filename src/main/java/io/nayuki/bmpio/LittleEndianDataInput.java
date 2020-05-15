@@ -1,4 +1,6 @@
-package p79068.bmpio;
+package io.nayuki.bmpio;
+
+import java.io.*;
 
 /**
  * Copyright © 2011 Nayuki Minase
@@ -26,45 +28,48 @@ package p79068.bmpio;
  * in the Software.
  */
 
-public final class BufferedRgb888Image implements Rgb888Image {
+final class LittleEndianDataInput {
 	
-	private int width;
-	
-	private int height;
-	
-	private int[] pixels;
+	private DataInputStream in;
 	
 	
 	
-	public BufferedRgb888Image(int width, int height) {
-		this.width = width;
-		this.height = height;
-		pixels = new int[width * height];
+	public LittleEndianDataInput(InputStream in) {
+		this.in = new DataInputStream(in);
 	}
 	
 	
 	
-	public int getWidth() {
-		return width;
+	public int readInt16() throws IOException {  // Returns unsigned int16
+		int x = in.readShort();
+		return (x & 0xFF) << 8 | (x & 0xFF00) >>> 8;
 	}
 	
 	
-	public int getHeight() {
-		return height;
+	public int readInt32() throws IOException {
+		int x = in.readInt();
+		return (x & 0xFF) << 24 | (x & 0xFF00) << 8 | (x & 0xFF0000) >>> 8 | (x & 0xFF000000) >>> 24;
 	}
 	
 	
-	public int getRgb888Pixel(int x, int y) {
-		if (x < 0 || x >= width || y < 0 || y >= height)
-			throw new IndexOutOfBoundsException();
-		return pixels[y * width + x];
+	public void skipFully(int len) throws IOException {
+		while (len > 0) {
+			long temp = in.skip(len);
+			if (temp == 0)
+				throw new EOFException();
+			len -= temp;
+		}
 	}
 	
 	
-	public void setRgb888Pixel(int x, int y, int color) {
-		if (x < 0 || x >= width || y < 0 || y >= height)
-			throw new IndexOutOfBoundsException();
-		pixels[y * width + x] = color;
+	public void readFully(byte[] b) throws IOException {
+		int off = 0;
+		while (off < b.length) {
+			int temp = in.read(b, off, b.length - off);
+			if (temp == -1)
+				throw new EOFException();
+			off += temp;
+		}
 	}
 	
 }

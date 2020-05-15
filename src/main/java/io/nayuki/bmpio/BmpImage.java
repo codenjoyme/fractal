@@ -1,8 +1,4 @@
-package p79068.bmpio;
-
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+package io.nayuki.bmpio;
 
 /**
  * Copyright © 2011 Nayuki Minase
@@ -30,35 +26,19 @@ import java.io.OutputStream;
  * in the Software.
  */
 
-final class LittleEndianDataOutput {
+public final class BmpImage {
 	
-	private DataOutputStream out;
+	public Rgb888Image image;
 	
+	public int horizontalResolution;  // In pixels per metre
 	
-	
-	public LittleEndianDataOutput(OutputStream out) {
-		this.out = new DataOutputStream(out);
-	}
+	public int verticalResolution;  // In pixels per metre
 	
 	
 	
-	public void writeBytes(byte[] b, int off, int len) throws IOException {
-		out.write(b);
-	}
-	
-	
-	public void writeInt16(int x) throws IOException {
-		out.writeShort((x & 0xFF) << 8 | (x & 0xFF00) >>> 8);
-	}
-	
-	
-	public void writeInt32(int x) throws IOException {
-		out.writeInt((x & 0xFF) << 24 | (x & 0xFF00) << 8 | (x & 0xFF0000) >>> 8 | (x & 0xFF000000) >>> 24);
-	}
-	
-	
-	public void flush() throws IOException {
-		out.flush();
+	public BmpImage() {
+		horizontalResolution = 3780;  // 96 DPI
+		verticalResolution = 3780;  // 96 DPI
 	}
 	
 }

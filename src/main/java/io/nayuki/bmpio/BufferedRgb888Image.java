@@ -1,4 +1,4 @@
-package p79068.bmpio;
+package io.nayuki.bmpio;
 
 /**
  * Copyright © 2011 Nayuki Minase
@@ -26,19 +26,45 @@ package p79068.bmpio;
  * in the Software.
  */
 
-public final class BmpImage {
+public final class BufferedRgb888Image implements Rgb888Image {
 	
-	public Rgb888Image image;
+	private int width;
 	
-	public int horizontalResolution;  // In pixels per metre
+	private int height;
 	
-	public int verticalResolution;  // In pixels per metre
+	private int[] pixels;
 	
 	
 	
-	public BmpImage() {
-		horizontalResolution = 3780;  // 96 DPI
-		verticalResolution = 3780;  // 96 DPI
+	public BufferedRgb888Image(int width, int height) {
+		this.width = width;
+		this.height = height;
+		pixels = new int[width * height];
+	}
+	
+	
+	
+	public int getWidth() {
+		return width;
+	}
+	
+	
+	public int getHeight() {
+		return height;
+	}
+	
+	
+	public int getRgb888Pixel(int x, int y) {
+		if (x < 0 || x >= width || y < 0 || y >= height)
+			throw new IndexOutOfBoundsException();
+		return pixels[y * width + x];
+	}
+	
+	
+	public void setRgb888Pixel(int x, int y, int color) {
+		if (x < 0 || x >= width || y < 0 || y >= height)
+			throw new IndexOutOfBoundsException();
+		pixels[y * width + x] = color;
 	}
 	
 }

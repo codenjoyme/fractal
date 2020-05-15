@@ -1,6 +1,8 @@
-package p79068.bmpio;
+package io.nayuki.bmpio;
 
-import java.io.*;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * Copyright © 2011 Nayuki Minase
@@ -28,48 +30,35 @@ import java.io.*;
  * in the Software.
  */
 
-final class LittleEndianDataInput {
+final class LittleEndianDataOutput {
 	
-	private DataInputStream in;
+	private DataOutputStream out;
 	
 	
 	
-	public LittleEndianDataInput(InputStream in) {
-		this.in = new DataInputStream(in);
+	public LittleEndianDataOutput(OutputStream out) {
+		this.out = new DataOutputStream(out);
 	}
 	
 	
 	
-	public int readInt16() throws IOException {  // Returns unsigned int16
-		int x = in.readShort();
-		return (x & 0xFF) << 8 | (x & 0xFF00) >>> 8;
+	public void writeBytes(byte[] b, int off, int len) throws IOException {
+		out.write(b);
 	}
 	
 	
-	public int readInt32() throws IOException {
-		int x = in.readInt();
-		return (x & 0xFF) << 24 | (x & 0xFF00) << 8 | (x & 0xFF0000) >>> 8 | (x & 0xFF000000) >>> 24;
+	public void writeInt16(int x) throws IOException {
+		out.writeShort((x & 0xFF) << 8 | (x & 0xFF00) >>> 8);
 	}
 	
 	
-	public void skipFully(int len) throws IOException {
-		while (len > 0) {
-			long temp = in.skip(len);
-			if (temp == 0)
-				throw new EOFException();
-			len -= temp;
-		}
+	public void writeInt32(int x) throws IOException {
+		out.writeInt((x & 0xFF) << 24 | (x & 0xFF00) << 8 | (x & 0xFF0000) >>> 8 | (x & 0xFF000000) >>> 24);
 	}
 	
 	
-	public void readFully(byte[] b) throws IOException {
-		int off = 0;
-		while (off < b.length) {
-			int temp = in.read(b, off, b.length - off);
-			if (temp == -1)
-				throw new EOFException();
-			off += temp;
-		}
+	public void flush() throws IOException {
+		out.flush();
 	}
 	
 }
