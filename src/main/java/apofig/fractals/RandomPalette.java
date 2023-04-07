@@ -23,8 +23,9 @@ public class RandomPalette implements Palette {
 
     private static final int MW = 8; // ширина маркера
     private static final int[] colorArray = new int[]{
-            0xFFFF00, 0xFF00FF, 0xFFFFFF, 0xFF00FF, 0xF00000F, 0xFF7FFF, 0xFA8072,
-            0xFFFFC0, 0xC0C0FF, 0xFFC0C0, 0xC0FFC0, 0xC000FF};
+            0xFFFFFF, 0x00FFFF, 0xFF00FF, 0xFFFF00, 0x0000FF, 0xFF0000, 0x00FF00,
+            0xC0FFFF, 0xFFC0FF, 0xFFFFC0, 0xC0C0FF, 0xFFC0C0, 0xC0FFC0, 0xC000FF,
+            0x00C0FF, 0x00FFC0, 0xC0FF00, 0xFFC000, 0xFF00C0};
 
     private List<Marker> markers = new LinkedList<Marker>();
     private int[] palette;

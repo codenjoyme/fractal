@@ -14,12 +14,12 @@ public class MandelbrotNew implements Fractal{
         double x = 0;
         double y = 0;
         int color = iterations;
-        while (color > 0 && r < 4) {
+        while (color > 0 && r < 6) {
             double x2 = x * x;
             double y2 = y * y;
             double xy = x * y;
-            x = x2 - y2 + a;
-            y = 2 * xy + b;
+            x = x2 - y2 - xy + a;
+            y = 2 * xy + y + b;
             r = x2 + y2;
             color--;
         }

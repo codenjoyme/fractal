@@ -9,11 +9,22 @@
     <version>1.0</version>
 
     <properties>
-        <java-version>8.0</java-version>
+        <java-version>8</java-version>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit-dep</artifactId>
+            <version>4.8.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+
+
     <build>
-        <plugins>
+         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

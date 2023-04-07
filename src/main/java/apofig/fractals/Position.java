@@ -11,7 +11,7 @@ public class Position {
     private double byMin;
     private double byMax;
 
-    Position(double bxMin, double bxMax, double byMin, double byMax) {
+    public Position(double bxMin, double bxMax, double byMin, double byMax) {
         this.bxMin = bxMin;
         this.bxMax = bxMax;
         this.byMin = byMin;
