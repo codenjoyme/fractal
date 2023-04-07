@@ -13,6 +13,7 @@ public final class FractalDemo {
 	public static void main(String[] args) throws IOException {
         draw(new Mandelbrot());
         draw(new Julia());
+        draw(new MandelbrotNew());
 	}
 
     private static void draw(Fractal fractal) throws IOException {
